@@ -34,3 +34,9 @@ console.log(ageJonas >= 60)
 const fullAge = ageSarah >= 18;
 
 console.log(now - 1990 > now - 2018);
+
+let z, y;
+z = y = 25 - 10 - 5;
+console.log(z, y);
+
+console.log("Average of ages: " + (ageJonas + ageSarah) / 2);

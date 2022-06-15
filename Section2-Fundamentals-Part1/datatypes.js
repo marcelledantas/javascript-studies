@@ -51,3 +51,27 @@ job = 'teacher';
 //Always declare a variable
 lastName = 'Dantas';
 console.log(lastName);
+
+//Strings
+const firstName2 = 'Marcelle';
+const job2 = 'developer'
+const birthYear2 = 1996;
+const year2 = 2037;
+
+const marcelle = "I'm " + firstName2 + ', a ' + (year2 - birthYear2) + ' years old ' + job2;
+console.log(marcelle);
+
+//String template (Inserting placeholder $)
+const marcelleNew = `I'm ${firstName2}, a ${year2 - birthYear2} year old ${job2}`;
+console.log(marcelleNew);
+
+console.log(`Just a regular string...`);
+
+//Multiple lines string
+console.log('String with \n\
+multiple\n\
+');
+
+console.log(`String
+multiple
+lines`);
