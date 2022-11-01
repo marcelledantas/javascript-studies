@@ -35,9 +35,3 @@ The scope chain is a one-way street: a scope will never, ever have access to the
 The scope chain in a certain scope is equal to adding together all the variables environments of the all parent scopes
 
 The scope chain has nothing to do with the order in which functions were called. It doesn't affect the scope chain at all.
-
-Hoisting: Makes some types of variables accessible/usable in the code before they are actually declared. "Variables lifted to the top of their scope"
-
-Before execution, code is scanned for variable declaration, and for each variable, anew property is created in the variable environment object.
-
-TDZ: Temporary dead zone - makes it easier to avoid and catch errors: accessing variables before declaration is bad practice and should be avoided. Makes const variables actually work - only should be assigned one time.
