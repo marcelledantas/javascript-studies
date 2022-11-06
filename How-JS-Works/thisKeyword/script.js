@@ -41,7 +41,9 @@ console.log(this);
 // console.log(f);
 // f(); //this f function is just a regular function, there is no object attached to this function, that is why the error appears in the console.
 
-// var firstName = "Matilda";
+const matilda = {
+    year: 2017,
+};
 
 const jonas = {
     firstName: "Jonas",
@@ -61,3 +63,11 @@ const jonas = {
 // console.log(this.firstName); //undefined -> this is not from the global scope
 
 // calcAge(1991); //undefined -> global scope (strict mode)
+
+matilda.calcAge = jonas.calcAge; //copyig a method to another object -> method borrowing
+
+matilda.calcAge(); //this keyword is dynamic, in this case it points to Matilda, because that's the object that is calling the method
+jonas.calcAge();
+
+const f = jonas.calcAge;
+f();
