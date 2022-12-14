@@ -40,7 +40,53 @@ const restaurant = {
             `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
         );
     },
+
+    orderPizza: function(mainIngredient, ...otherIngredients) {
+        console.log(mainIngredient);
+        console.log(otherIngredients);
+    },
 };
+
+// Destructuring
+
+// SPREAD, because on the right side of =
+const arr = [1, 2, ...[3, 4]];
+
+// REST, because on left side of =
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
+
+const [pizza, , risoto, ...otherFood] = [
+    ...restaurant.mainMenu,
+    ...restaurant.starterMenu,
+];
+
+console.log(pizza, risoto, otherFood);
+
+// Objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(sat, weekdays);
+
+// 2) Functions
+// REST operator: pack the values into an array
+const add = function(...numbers) {
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+    }
+    console.log(sum);
+};
+
+add(2, 3);
+add(5, 3, 7, 2);
+add(8, 2, 5, 3, 2, 4);
+
+const x = [23, 5, 7];
+// using the spread operator
+add(...x);
+
+restaurant.orderPizza("mashrooms", "onion", "olives", "spinach");
+restaurant.orderPizza("mushrooms");
 
 // // Spread operator
 // // Use with pass article to a function or build an array
