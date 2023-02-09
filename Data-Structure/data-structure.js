@@ -1,92 +1,124 @@
 "use strict";
 
 const restaurant = {
-    name: "Classico Italiano",
-    location: "Via Angelo Tavanti 23, Italy",
-    categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
-    starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
-    mainMenu: ["Pizza", "Pasta", "Risotto"],
-    order: function(starterIndex, mainIndex) {
-        return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  name: "Classico Italiano",
+  location: "Via Angelo Tavanti 23, Italy",
+  categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
+  starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
+  mainMenu: ["Pizza", "Pasta", "Risotto"],
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
+  openingHours: {
+    thu: {
+      open: 12,
+      close: 22,
     },
-    openingHours: {
-        thu: {
-            open: 12,
-            close: 22,
-        },
-        fri: {
-            open: 11,
-            close: 23,
-        },
-        sat: {
-            open: 0,
-            close: 24,
-        },
+    fri: {
+      open: 11,
+      close: 23,
     },
+    sat: {
+      open: 0,
+      close: 24,
+    },
+  },
 
-    orderDelivery: function({
-        starterIndex = 1,
-        mainIndex = 0,
-        time = "20:00",
-        address,
-    }) {
-        console.log(
-            `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
-        );
-    },
+  orderDelivery: function ({
+    starterIndex = 1,
+    mainIndex = 0,
+    time = "20:00",
+    address,
+  }) {
+    console.log(
+      `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
+    );
+  },
 
-    orderPasta: function(ing1, ing2, ing3) {
-        console.log(
-            `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
-        );
-    },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(
+      `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
+    );
+  },
 
-    orderPizza: function(mainIngredient, ...otherIngredients) {
-        console.log(mainIngredient);
-        console.log(otherIngredients);
-    },
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
-// Destructuring
+console.log("-------OR-------");
+// Use ANY data type, return data type, short-circuiting
+// || using short-circuiting if the first parameters is a truthy value, it returns immediately this truthy value, the other operand will not gonna be evaluated
+console.log(3 || "Jonas");
+console.log("" || "Jonas"); //"" -> empty string is  a falsy value
+console.log(true || 0);
+console.log(undefined || null);
 
-// SPREAD, because on the right side of =
-const arr = [1, 2, ...[3, 4]];
+console.log(undefined || 0 || "" || "Hello" || 23); //-> search for the first truthy value, if it doesn't exist then it returns the last operand.
 
-// REST, because on left side of =
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
+//Setting a new property
+// restaurant.numGuests = 23;
 
-const [pizza, , risoto, ...otherFood] = [
-    ...restaurant.mainMenu,
-    ...restaurant.starterMenu,
-];
+const guest1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guest1);
 
-console.log(pizza, risoto, otherFood);
+const guest2 = restaurant.numGuests || 10;
+console.log(guest2);
 
-// Objects
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(sat, weekdays);
+console.log("-------AND-------"); // && -> It works the exact opposite as || operador. Therefore, it short-circuiting when the first value is falsy.
+console.log(0 && "Jonas");
+console.log(7 && "Jonas");
 
-// 2) Functions
-// REST operator: pack the values into an array
-const add = function(...numbers) {
-    let sum = 0;
-    for (let i = 0; i < numbers.length; i++) {
-        sum += numbers[i];
-    }
-    console.log(sum);
-};
+console.log("Hello" && 23 && null && "Jonas");
 
-add(2, 3);
-add(5, 3, 7, 2);
-add(8, 2, 5, 3, 2, 4);
+//Practical example: check if the method orderPizza exists
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("mushrooms", "spinach");
+}
 
-const x = [23, 5, 7];
-// using the spread operator
-add(...x);
+restaurant.orderPizza && restaurant.orderPizza("mushrooms", "spinach");
 
-restaurant.orderPizza("mashrooms", "onion", "olives", "spinach");
-restaurant.orderPizza("mushrooms");
+// // Destructuring
+
+// // SPREAD, because on the right side of =
+// const arr = [1, 2, ...[3, 4]];
+
+// // REST, because on left side of =
+// const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others);
+
+// const [pizza, , risoto, ...otherFood] = [
+//     ...restaurant.mainMenu,
+//     ...restaurant.starterMenu,
+// ];
+
+// console.log(pizza, risoto, otherFood);
+
+// // Objects
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(sat, weekdays);
+
+// // 2) Functions
+// // REST operator: pack the values into an array
+// const add = function(...numbers) {
+//     let sum = 0;
+//     for (let i = 0; i < numbers.length; i++) {
+//         sum += numbers[i];
+//     }
+//     console.log(sum);
+// };
+
+// add(2, 3);
+// add(5, 3, 7, 2);
+// add(8, 2, 5, 3, 2, 4);
+
+// const x = [23, 5, 7];
+// // using the spread operator
+// add(...x);
+
+// restaurant.orderPizza("mashrooms", "onion", "olives", "spinach");
+// restaurant.orderPizza("mushrooms");
 
 // // Spread operator
 // // Use with pass article to a function or build an array
