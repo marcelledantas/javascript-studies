@@ -47,10 +47,44 @@ const restaurant = {
     },
 };
 
-restaurant.numGuests = 0;
+const rest1 = {
+    name: 'Capri',
+    numGuests: 0,
+		// numGuests: 20,
+};
 
-const guest1 = restaurant.numGuests || 10;
-console.log(guest1);
+const rest2 = {
+    nome: 'La Piazza',
+    owner: 'Giovanni Rossi',
+};
+
+
+// OR assignment operator: this operator will assign a variable if the variable is falsy 
+// rest1.numGuests = rest1.numGuests || 10;
+// rest2.numGuests = rest2.numGuests || 10;
+
+// rest1.numGuests ||= 10;
+// rest2.numGuests ||= 10;
+
+// nullish assignment operator (null or undefined): this operator will assign a value to a variable it its current variable is nullish
+rest1.numGuests ??= rest1.numGuests || 10;
+rest2.numGuests ??= rest2.numGuests || 10;
+
+// Short circuiting &&: when the first valuable is truthy
+// rest2.owner = rest2.owner && '<anonymous>'
+// rest1.owner = rest1.owner && '<anonymous>'
+
+rest2.owner &&= '<anonymous>'
+rest1.owner &&= '<anonymous>'
+
+
+console.log(rest1);
+console.log(rest2);
+
+// restaurant.numGuests = 0;
+
+// const guest1 = restaurant.numGuests || 10;
+// console.log(guest1);
 
 // Nullish values: null and undefined (NOT 0 or '')
 // const guestCorrect = restaurant.numGuests ?? 10; // Only nullish values will short circuit the evaluation
