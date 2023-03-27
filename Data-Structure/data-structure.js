@@ -50,13 +50,34 @@ const restaurant = {
 const rest1 = {
     name: 'Capri',
     numGuests: 0,
-		// numGuests: 20,
+    // numGuests: 20,
 };
 
 const rest2 = {
     nome: 'La Piazza',
     owner: 'Giovanni Rossi',
 };
+
+// For-of loop
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+for (const item of menu) {
+    console.log(item);
+}
+
+for (const item of menu.entries()) {
+    console.log(item);
+}
+
+console.log(menu.entries());
+console.log([...menu.entries()]);
+
+for (const item of menu.entries()) {
+    console.log(`${item[0] + 1}: ${item[1]}`);
+}
+
+for (const [i, el] of menu.entries()) { //Using destructuring
+    console.log(`${i + 1}: ${el}`);
+}
 
 
 // OR assignment operator: this operator will assign a variable if the variable is falsy 
@@ -67,19 +88,19 @@ const rest2 = {
 // rest2.numGuests ||= 10;
 
 // nullish assignment operator (null or undefined): this operator will assign a value to a variable it its current variable is nullish
-rest1.numGuests ??= rest1.numGuests || 10;
-rest2.numGuests ??= rest2.numGuests || 10;
+// rest1.numGuests ??= rest1.numGuests || 10;
+// rest2.numGuests ??= rest2.numGuests || 10;
 
 // Short circuiting &&: when the first valuable is truthy
 // rest2.owner = rest2.owner && '<anonymous>'
 // rest1.owner = rest1.owner && '<anonymous>'
 
-rest2.owner &&= '<anonymous>'
-rest1.owner &&= '<anonymous>'
+// rest2.owner &&= '<anonymous>'
+// rest1.owner &&= '<anonymous>'
 
 
-console.log(rest1);
-console.log(rest2);
+// console.log(rest1);
+// console.log(rest2);
 
 // restaurant.numGuests = 0;
 
