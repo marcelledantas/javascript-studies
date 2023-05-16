@@ -4,7 +4,7 @@ const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
 
 
-const hours = {
+const openingHours = {
 	[weekdays[3]]: {
 			open: 12,
 			close: 22,
@@ -42,7 +42,7 @@ const restaurant = {
 
     // openingHours: openingHours,
 		// ES6 enhanced object literals
-		openinghours: hours,
+		openinghours: openingHours,
 
     orderDelivery({
         starterIndex = 1,
@@ -67,52 +67,80 @@ const restaurant = {
     },
 };
 
-if(restaurant.openinghours.mon){
-	console.log(restaurant.openinghours.mon.open);
+// Looping Objects
+
+// property NAMES
+const properties = Object.keys(openingHours);
+// console.log(properties);
+
+let openStr = `We are open on ${properties.length} days: `;
+
+for(const day of properties){
+	openStr += `${day}, `
+	// console.log(day);
 }
 
+// console.log(openStr);
 
-// WITH optional chaining
-// the property open will show only if restaurant.openinghours.mon? is not null or udefined
-console.log(restaurant.openinghours.mon?.open);
-// console.log(restaurant.openinghours.mon.open); //error: because we trying to access a property from udefined.
+// property VALUES
+const values = Object.values(openingHours);
+// console.log(values);
 
-console.log(restaurant.openinghours.mon?.open);
+//Entire object 
+const entries = Object.entries(openingHours);
+// console.log(entries);
 
-//EXAMPLE
-const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-for(const day of days){
-	console.log(day);
-	// const open = restaurant.openinghours[day]?.open;
-	// const open = restaurant.openinghours[day].open;
-
-	//removing udenfined:
-	const open = restaurant.openinghours[day]?.open ?? 'closed';
-// ?? nullish operator, because zero is a falsy value
-
-	console.log(`On day ${day}, we open at ${open}`);
+// Using destructuring
+for(const [key, {open, close}] of entries){
+	console.log(`On ${key} we open at ${open} and close at ${close}`);
 }
 
-//METHODS, check if a method exists
-console.log(restaurant.order?.(0,1) ?? 'Method does not exist');
-console.log(restaurant.orderRisotto?.(0,1) ?? 'Method does not exist');
-console.log(restaurant.orderRisotto?.(0,1) || 'Method does not exist');
+// if(restaurant.openinghours.mon){
+// 	console.log(restaurant.openinghours.mon.open);
+// }
 
 
-//ARRAYS: check if a array is empty
-const users = [{
-	name: 'Jonas',
-	email : 'jonas@gmail.com',	
-}]
+// // WITH optional chaining
+// // the property open will show only if restaurant.openinghours.mon? is not null or udefined
+// console.log(restaurant.openinghours.mon?.open);
+// // console.log(restaurant.openinghours.mon.open); //error: because we trying to access a property from udefined.
 
-console.log(users[0]?.name ?? 'User array is empty');
+// console.log(restaurant.openinghours.mon?.open);
 
-//Equivalent to
-if(users.length > 0){
-	console.log(users[0].name);
-} else{
-	console.log('User array is empty');
-}
+// //EXAMPLE
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+// for(const day of days){
+// 	console.log(day);
+// 	// const open = restaurant.openinghours[day]?.open;
+// 	// const open = restaurant.openinghours[day].open;
+
+// 	//removing udenfined:
+// 	const open = restaurant.openinghours[day]?.open ?? 'closed';
+// // ?? nullish operator, because zero is a falsy value
+
+// 	console.log(`On day ${day}, we open at ${open}`);
+// }
+
+// //METHODS, check if a method exists
+// console.log(restaurant.order?.(0,1) ?? 'Method does not exist');
+// console.log(restaurant.orderRisotto?.(0,1) ?? 'Method does not exist');
+// console.log(restaurant.orderRisotto?.(0,1) || 'Method does not exist');
+
+
+// //ARRAYS: check if a array is empty
+// const users = [{
+// 	name: 'Jonas',
+// 	email : 'jonas@gmail.com',	
+// }]
+
+// console.log(users[0]?.name ?? 'User array is empty');
+
+// //Equivalent to
+// if(users.length > 0){
+// 	console.log(users[0].name);
+// } else{
+// 	console.log('User array is empty');
+// }
 
 
 // const rest1 = {
