@@ -47,37 +47,40 @@ const restaurant = {
     },
 };
 
-const rest1 = {
-    name: 'Capri',
-    numGuests: 0,
-    // numGuests: 20,
-};
 
-const rest2 = {
-    nome: 'La Piazza',
-    owner: 'Giovanni Rossi',
-};
 
-// For-of loop
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-for (const item of menu) {
-    console.log(item);
-}
 
-for (const item of menu.entries()) {
-    console.log(item);
-}
+// const rest1 = {
+//     name: 'Capri',
+//     numGuests: 0,
+//     // numGuests: 20,
+// };
 
-console.log(menu.entries());
-console.log([...menu.entries()]);
+// const rest2 = {
+//     nome: 'La Piazza',
+//     owner: 'Giovanni Rossi',
+// };
 
-for (const item of menu.entries()) {
-    console.log(`${item[0] + 1}: ${item[1]}`);
-}
+// // For-of loop
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// for (const item of menu) {
+//     console.log(item);
+// }
 
-for (const [i, el] of menu.entries()) { //Using destructuring
-    console.log(`${i + 1}: ${el}`);
-}
+// for (const item of menu.entries()) {
+//     console.log(item);
+// }
+
+// console.log(menu.entries());
+// console.log([...menu.entries()]);
+
+// for (const item of menu.entries()) {
+//     console.log(`${item[0] + 1}: ${item[1]}`);
+// }
+
+// for (const [i, el] of menu.entries()) { //Using destructuring
+//     console.log(`${i + 1}: ${el}`);
+// }
 
 
 // OR assignment operator: this operator will assign a variable if the variable is falsy 
