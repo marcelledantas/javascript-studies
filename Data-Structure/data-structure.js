@@ -1,4 +1,28 @@
 "use strict";
+//EXAMPLE
+const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+
+
+
+const hours = {
+	[weekdays[3]]: {
+			open: 12,
+			close: 22,
+	},
+	[weekdays[4]]: {
+			open: 11,
+			close: 23,
+	},
+	[weekdays[5]]: {
+			open: 0,
+			close: 24,
+	},
+// 	[`day-${2+6}`]: { <- extrmely helpful to do
+// 		open: 0,
+// 		close: 24,
+// },
+};
+
 
 const restaurant = {
     name: "Classico Italiano",
@@ -6,25 +30,21 @@ const restaurant = {
     categories: ["Italian", "Pizzeria", "Vegetarian", "Organic"],
     starterMenu: ["Focaccia", "Bruschetta", "Garlic Bread", "Caprese Salad"],
     mainMenu: ["Pizza", "Pasta", "Risotto"],
-    order: function(starterIndex, mainIndex) {
-        return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
-    },
-    openingHours: {
-        thu: {
-            open: 12,
-            close: 22,
-        },
-        fri: {
-            open: 11,
-            close: 23,
-        },
-        sat: {
-            open: 0,
-            close: 24,
-        },
-    },
+    
+		// order: function(starterIndex, mainIndex) {
+    //     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+    // },
 
-    orderDelivery: function({
+		//New way to write it
+		order(starterIndex, mainIndex) {
+			return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+	},
+
+    // openingHours: openingHours,
+		// ES6 enhanced object literals
+		openinghours: hours,
+
+    orderDelivery({
         starterIndex = 1,
         mainIndex = 0,
         time = "20:00",
@@ -35,19 +55,43 @@ const restaurant = {
         );
     },
 
-    orderPasta: function(ing1, ing2, ing3) {
+    orderPasta(ing1, ing2, ing3) {
         console.log(
             `Here is your delicious pasta with ${ing1}, ${ing2} and ${ing3}`
         );
     },
 
-    orderPizza: function(mainIngredient, ...otherIngredients) {
+    orderPizza(mainIngredient, ...otherIngredients) {
         console.log(mainIngredient);
         console.log(otherIngredients);
     },
 };
 
+if(restaurant.openinghours.mon){
+	console.log(restaurant.openinghours.mon.open);
+}
 
+
+// WITH optional chaining
+// the property open will show only if restaurant.openinghours.mon? is not null or udefined
+console.log(restaurant.openinghours.mon?.open);
+// console.log(restaurant.openinghours.mon.open); //error: because we trying to access a property from udefined.
+
+console.log(restaurant.openinghours.mon?.open);
+
+//EXAMPLE
+const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+for(const day of days){
+	console.log(day);
+	// const open = restaurant.openinghours[day]?.open;
+	// const open = restaurant.openinghours[day].open;
+
+	//removing udenfined:
+	const open = restaurant.openinghours[day]?.open ?? 'closed';
+// ?? nullish operator, because zero is a falsy value
+
+	console.log(`On day ${day}, we open at ${open}`);
+}
 
 
 // const rest1 = {
