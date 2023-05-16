@@ -93,6 +93,20 @@ for(const day of days){
 	console.log(`On day ${day}, we open at ${open}`);
 }
 
+//METHODS, check if a method exists
+console.log(restaurant.order?.(0,1) ?? 'Method does not exist');
+console.log(restaurant.orderRisotto?.(0,1) ?? 'Method does not exist');
+console.log(restaurant.orderRisotto?.(0,1) || 'Method does not exist');
+
+
+//ARRAYS: check if a array is empty
+const users = [{
+	name: 'Jonas',
+	email : 'jonas@gmail.com',	
+}]
+
+console.log(users[0]?.name ?? 'User array is empty');
+
 
 // const rest1 = {
 //     name: 'Capri',
