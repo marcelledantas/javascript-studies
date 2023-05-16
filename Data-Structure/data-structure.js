@@ -107,6 +107,13 @@ const users = [{
 
 console.log(users[0]?.name ?? 'User array is empty');
 
+//Equivalent to
+if(users.length > 0){
+	console.log(users[0].name);
+} else{
+	console.log('User array is empty');
+}
+
 
 // const rest1 = {
 //     name: 'Capri',
