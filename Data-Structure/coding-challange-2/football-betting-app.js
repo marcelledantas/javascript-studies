@@ -41,51 +41,78 @@ const game = {
     },
 };
 
-let counter = 1;
+// let counter = 1;
 
-for(const player of game.scored){
-	console.log(`Goal ${counter}: ${player}`);
-	counter++;
-}
+// for(const player of game.scored){
+// 	console.log(`Goal ${counter}: ${player}`);
+// 	counter++;
+// }
 
-//Loop key
-const oddsValue = Object.values(game.odds);
-const propertiesName = Object.keys(game.odds);
+// //Loop key
+// const oddsValue = Object.values(game.odds);
+// const propertiesName = Object.keys(game.odds);
 
-let avgOdd = 0;
-for(const odd of oddsValue){
-	avgOdd += odd;
-}
-console.log(`Average odd: ${avgOdd/oddsValue.length}`);
+// let avgOdd = 0;
+// for(const odd of oddsValue){
+// 	avgOdd += odd;
+// }
+// console.log(`Average odd: ${avgOdd/oddsValue.length}`);
 
-for(const team of propertiesName){
-	if(game[`${team}`]){
-		console.log(`Odd of victory ${game[`${team}`]}: ${game.odds[`${team}`]}`);	
-	} else{
-		console.log(`Odd of draw: ${game.odds[`${team}`]}`);
-	}
-}
+// for(const team of propertiesName){
+// 	if(game[`${team}`]){
+// 		console.log(`Odd of victory ${game[`${team}`]}: ${game.odds[`${team}`]}`);	
+// 	} else{
+// 		console.log(`Odd of draw: ${game.odds[`${team}`]}`);
+// 	}
+// }
 
-let scorers = {};
+// let scorers = {};
 
-const entries = Object.entries(scorers);
-let players = [];
+// const entries = Object.entries(scorers);
+// let players = [];
 
 
-for(const playerOut of game.scored){
+// for(const playerOut of game.scored){
 	
-	let count = 0;
+// 	let count = 0;
 
-	for(const player of game.scored){
-		if(playerOut == player){
-			count++;
-		}
-	}
+// 	for(const player of game.scored){
+// 		if(playerOut == player){
+// 			count++;
+// 		}
+// 	}
 
-	scorers[playerOut] = count;
+// 	scorers[playerOut] = count;
 
+// }
+
+// console.log(scorers);
+
+// console.log(game);
+
+
+//Another solution
+
+for(const [i, player] of game.scored.entries()){
+	console.log(`Gol ${i + 1}: ${player}`);
 }
-console.log(scorers);
+
+const odds = Object.values(game.odds);
+
+let average = 0;
+for(const odd of odds){
+	average += odd;
+}
+
+average /= odds.length;
+console.log(average);
+
+const gameOddsEntries = Object.entries(game.odds);
+for(const [team, odd] of gameOddsEntries){
+	const teamStr = team === 'x'? 'draw' : `Odd of victory ${game[team]}`
+	console.log(`Odd of ${teamStr}: ${odd}`);
+}
+
 
 
 
