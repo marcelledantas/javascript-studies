@@ -31,62 +31,64 @@ const game = {
     ],
     score: '4:0',
     scored: ['Lewandowski', 'Gnarby', 'Lewandowski',
-        'Hummels'
+        'Hummels', 'Hummels'
     ],
     date: 'Nov 9th, 2037',
     odds: {
-        team1: 11.33,
+        team1: 1.33,
         x: 3.25,
         team2: 6.5,
     },
 };
 
+let counter = 1;
 
-// const players1 = game.players[0];
-// const players2 = game.players[1];
+for(const player of game.scored){
+	console.log(`Goal ${counter}: ${player}`);
+	counter++;
+}
 
-const [players1, players2] = game.players; //Destructuring array
+//Loop key
+const oddsValue = Object.values(game.odds);
+const propertiesName = Object.keys(game.odds);
 
-// Destructing
-console.log(players1);
-let [gk, ...fieldPlayers] = players1;
+let avgOdd = 0;
+for(const odd of oddsValue){
+	avgOdd += odd;
+}
+console.log(`Average odd: ${avgOdd/oddsValue.length}`);
 
-console.log(`gk: ${gk} `);
-console.log(`fieldPlayers: ${fieldPlayers}`);
+for(const team of propertiesName){
+	if(game[`${team}`]){
+		console.log(`Odd of victory ${game[`${team}`]}: ${game.odds[`${team}`]}`);	
+	} else{
+		console.log(`Odd of draw: ${game.odds[`${team}`]}`);
+	}
+}
 
-const allPlayers = [...players1, ...players2];
+let scorers = {};
 
-console.log(allPlayers);
-
-console.log(`allPlayers: ${allPlayers} - length: ${allPlayers.length}`);
-
-const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
-console.log(players1Final);
+const entries = Object.entries(scorers);
+let players = [];
 
 
-// let { team1, x: draw, team2 } = game.odds;
-// const { odds } = game;
-// let { team1, x: draw, team2 } = odds;
-const { odds: { team1, x: draw, team2 } } = game;
+for(const playerOut of game.scored){
+	
+	let count = 0;
 
-console.log(team1);
-console.log(team2);
-console.log(draw);
+	for(const player of game.scored){
+		if(playerOut == player){
+			count++;
+		}
+	}
 
-const printGoals = function(...numPlayers) {
-    for (i = 0; numPlayers[i]; i++) {
-        if (game.scored.includes(numPlayers[i])) {
-            console.log(`${numPlayers[i]} - Total goals: ${game.score}`);
-        }
-    }
-};
+	scorers[playerOut] = count;
 
-printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+}
+console.log(scorers);
 
-// The || short circuit when the first value is true 
-// The && short circuit when the first value is false
 
-team1 < team2 && console.log('Team 1 is more likely to win');
-team2 < team1 && console.log('Team 2 is more likely to win');
 
-// console.log(team1);
+
+
+
